@@ -1,0 +1,6 @@
+id=adb_shell_policy
+name=ADB shell root permission
+version=1
+versionCode=1
+author=Local device owner
+description=Grants Magisk superuser only to Android shell UID 2000.

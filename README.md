@@ -1,5 +1,8 @@
 # Linux on the ZTE F50 / MU300 and U30 Air
 
+> **Fork field report:** [Rooting one ZTE U30 Air B03 with Magisk](docs/u30air-b03-root/README.md) — experimental, device-specific, with recovery limitations and SELinux permissive.
+
+
 [![Latest Release](https://img.shields.io/github/v/release/dikeckaan/mu300-linux?logo=github)](https://github.com/dikeckaan/mu300-linux/releases/latest)
 [![Total Downloads](https://img.shields.io/github/downloads/dikeckaan/mu300-linux/total?color=blue&logo=github)](https://github.com/dikeckaan/mu300-linux/releases)
 [![Stars](https://img.shields.io/github/stars/dikeckaan/mu300-linux?logo=github)](https://github.com/dikeckaan/mu300-linux/stargazers)
