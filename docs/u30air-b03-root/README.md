@@ -17,6 +17,21 @@ uid=0(root) gid=0(root) groups=0(root) context=u:r:magisk:s0
 
 `/debug_ramdisk` is device-specific; query `adb shell /debug_ramdisk/magisk --path` when applicable. `getenforce` returned **Permissive**. That is a material reduction in security; no claim is made that this method preserves SELinux enforcement. USB-debugging authorization and ADB-shell root should be protected: the policy has no expiry. Revoke it when finished in Magisk or via its SQLite policy interface. The bootloader remained reported locked.
 
+## Device and firmware compatibility
+
+The only **verified success in this fork** is the single U30 Air B03 unit described above. A similar product name or SoC is not proof that this exact TrustOS patch, FDL, partition layout, signing chain or recovery method will work. No probability of success has been measured for other devices.
+
+| Device and software | Evidence | Status for this B03-derived procedure |
+| --- | --- | --- |
+| ZTE U30 Air, `U30Air_XCBZV1.0.0B03` | One device in this report booted Magisk and returned `uid=0` to ADB. | Verified on one unit only; not independently replicated. |
+| Other ZTE U30 Air units with the exact same B03 build | Same model and build are the closest candidate; matching actual boot chain, partition layout, FDL acceptance and recovery are still required. | Plausible candidate, **untested**. Even identical display IDs need not guarantee identical hardware or signing configuration. |
+| ZTE F50 / MU300 or U30 Air, B16 | The [F50 B16 project](https://github.com/Xio-Shark/f50-b16) describes a separate B16-only root package for these models. Our B03 candidate's modified payload matched its published B16 reference. | Related research, **not a test of this B03 procedure on B16**. Follow version-specific evidence and never flash its B16 boot image on B03. |
+| ZTE F50 / MU300, B09 | A [separate F50 B09 toolkit](https://github.com/dikeckaan/zte-f50-toolkit) describes B09-specific TrustOS and boot images. | Related method, **not evidence of compatibility** with this B03 procedure. Its downgrade flow can erase user data. |
+| Other U30 Air revisions (including B33), regional variants, and other firmware on F50 / MU300 | Upstream describes U30 Air and F50 as sharing a board/chip, but boot chains and protections can differ. A [U30 Air B33 report](https://github.com/TomKing062/CVE-2022-38694_unlock_bootloader/issues/340) documents rejection of modified U-Boot, not this TrustOS test. | **Unknown; do not assume compatibility.** B33's U-Boot rejection cannot by itself establish whether this TrustOS approach works or fails. |
+| U30 Pro, U50, MU5001/MU5002 and other routers | No device-specific evidence for this exact workflow was established here. | **Not assessed; no compatibility claim.** |
+
+Before treating an untested unit as a candidate, independently verify its exact firmware, hardware, boot-chain backups, relevant hashes and instruction/layout checks, FDL behavior, active slot and a device-specific recovery path. The offline builder's acceptance is only one check; it does not establish successful boot or safe recovery. Do not share NV, serial numbers, or private partition dumps when asking others for help.
+
 ## Before starting: preserve and verify your own device
 
 * Record the exact `ro.build.display.id`, kernel, boot slot, `ro.boot.flash.locked`, verified boot state, Android version, partition layout and hardware. Do not use our offsets or images on a different layout. Check permissions and license terms for every third-party tool and binary.
